@@ -78,14 +78,12 @@ class TodoApp extends React.Component<null, TodoAppState> {
     })
   }
   confirmEditTodo () {
-    console.log('confirm start')
     const newTodos = this.state.todos.map(todo =>{
       if (todo.id === this.state.oldEditTodo.id) {
         todo.title = this.state.oldEditTodo.title
       }
       return todo;
     })
-    console.log('confirm', newTodos)
     this.setState(state => ({
       todos: newTodos,
       currentEditTodo: null,
@@ -133,7 +131,6 @@ class TodoApp extends React.Component<null, TodoAppState> {
     }))
   }
   render() {
-    console.log('---------reander -----')
     const fixedTodos = this.state.todos.filter((item) => {
       if (this.state.filterType === 'all') {
         return true;
@@ -164,11 +161,11 @@ class TodoApp extends React.Component<null, TodoAppState> {
                     <input 
                       value={this.state.oldEditTodo.title} 
                       onChange={e => this.handleEditChange(e)}
-                      onBlur={() => this.cancelEditTodo()}
+                      onBlur={e => this.confirmEditTodo()}
                       onKeyUp={e => this.handleKeyupEnterConfirm(e)} 
                     />
-                    <button onClick={() => this.cancelEditTodo()}>cancel</button>
-                    <button onClick={() => {this.confirmEditTodo()}}>confirm</button>
+                    <button onClick={() => this.cancelEditTodo()}>cancel 02</button>
+                    <button onClick={() => this.confirmEditTodo()}>confirm 01</button>
                   </div>
                   : 
                   <div style={{display: 'inline-block'}}>
